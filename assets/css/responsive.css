@@ -1,0 +1,381 @@
+/* ============================================================
+   RESPONSIVE CSS — JAI VIKASH PORTFOLIO
+   Mobile-first breakpoints: 320px → 1920px
+   ============================================================ */
+
+/* ── Large Desktop (1400px+) ───────────────────────────────── */
+@media (min-width: 1400px) {
+  :root { --container-max: 1320px; }
+  .hero-name { font-size: 5.5rem; }
+}
+
+/* ── Desktop (1200px+) ─────────────────────────────────────── */
+@media (min-width: 1200px) {
+  .skills-grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
+}
+
+/* ── Tablet (max 1024px) ───────────────────────────────────── */
+@media (max-width: 1024px) {
+  :root { --section-pad: 90px; }
+
+  .hero-inner {
+    gap: 40px;
+  }
+
+  .about-grid {
+    gap: 48px;
+  }
+
+  .dsa-inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .nav-hamburger {
+    display: flex;
+  }
+
+  .nav-mobile {
+    display: flex;
+  }
+}
+
+/* ── Small Tablet (max 768px) ──────────────────────────────── */
+@media (max-width: 768px) {
+  :root { --section-pad: 72px; }
+
+  /* Hero */
+  .hero-inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 48px;
+  }
+
+  .hero-content {
+    order: 1;
+  }
+
+  .hero-visual {
+    order: 2;
+  }
+
+  .hero-name {
+    font-size: clamp(2.5rem, 8vw, 3.5rem);
+  }
+
+  .hero-role-wrapper {
+    justify-content: center;
+    font-size: 1.1rem;
+  }
+
+  #hero-role-text {
+    min-width: 200px;
+  }
+
+  .hero-tagline {
+    margin: 0 auto 40px;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .hero-social {
+    justify-content: center;
+  }
+
+  .availability-badge {
+    margin: 0 auto 28px;
+  }
+
+  /* About */
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .about-content {
+    order: 1;
+  }
+
+  .stats-grid {
+    order: 2;
+  }
+
+  /* Projects */
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Timeline */
+  .timeline::before {
+    left: 20px;
+  }
+
+  .timeline-node {
+    width: 44px;
+  }
+
+  .timeline-icon {
+    width: 38px;
+    height: 38px;
+    font-size: 0.9rem;
+  }
+
+  /* Achievements */
+  .achievements-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Modal */
+  .modal {
+    max-height: 90vh;
+  }
+
+  .modal-content {
+    padding: 0 20px 24px;
+  }
+
+  /* Contact */
+  .form-group {
+    grid-template-columns: 1fr;
+  }
+
+  /* Terminal window */
+  .terminal-window {
+    max-width: 100%;
+  }
+
+  /* Section headers */
+  .section-title {
+    font-size: clamp(1.6rem, 6vw, 2.2rem);
+  }
+
+  /* Skills */
+  .skills-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+
+  /* DSA */
+  .dsa-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Back to top */
+  #back-to-top {
+    bottom: 20px;
+    right: 20px;
+  }
+}
+
+/* ── Mobile (max 480px) ────────────────────────────────────── */
+@media (max-width: 480px) {
+  :root { --section-pad: 60px; }
+
+  .container { padding: 0 16px; }
+
+  .hero-name {
+    font-size: clamp(2.2rem, 9vw, 3rem);
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
+  }
+
+  .hero-social {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .social-links {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .stat-card {
+    padding: 20px 16px;
+  }
+
+  .stat-value {
+    font-size: 2rem;
+  }
+
+  .skills-tabs {
+    gap: 6px;
+  }
+
+  .skill-tab {
+    padding: 7px 14px;
+    font-size: 0.8rem;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .skill-card {
+    padding: 18px;
+  }
+
+  .project-filters {
+    gap: 6px;
+  }
+
+  .filter-btn {
+    padding: 6px 14px;
+    font-size: 0.78rem;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .timeline-item {
+    gap: 18px;
+  }
+
+  .timeline::before { left: 16px; }
+  .timeline-node { width: 36px; }
+  .timeline-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 0.75rem;
+  }
+
+  .contact-form-wrap {
+    padding: 24px;
+  }
+
+  .modal-content {
+    padding: 0 16px 20px;
+  }
+
+  .modal-title {
+    font-size: 1.4rem;
+  }
+
+  .modal-actions {
+    flex-direction: column;
+  }
+
+  .modal-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .terminal-body {
+    padding: 16px;
+    font-size: 0.76rem;
+  }
+
+  .terminal-output-area {
+    padding: 14px 16px;
+    font-size: 0.76rem;
+  }
+
+  .terminal-input-row {
+    padding: 10px 16px;
+  }
+
+  .footer-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+  }
+
+  .contact-channel {
+    padding: 14px;
+  }
+
+  .dsa-thinking {
+    padding: 24px;
+  }
+
+  .section-header {
+    margin-bottom: 48px;
+  }
+}
+
+/* ── Extra Small (max 375px) ───────────────────────────────── */
+@media (max-width: 375px) {
+  .hero-name {
+    font-size: 2rem;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Tall viewports / landscape mobile ─────────────────────── */
+@media (max-height: 600px) and (max-width: 900px) {
+  .hero {
+    min-height: auto;
+    padding: 100px 0 60px;
+  }
+}
+
+/* ── High-DPI / Retina ─────────────────────────────────────── */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .bg-grid {
+    background-size: 40px 40px;
+  }
+}
+
+/* ── Print ─────────────────────────────────────────────────── */
+@media print {
+  .nav, .bg-canvas, #back-to-top, .cursor-dot, .cursor-ring,
+  #scroll-progress, .hero-visual, #terminal-section {
+    display: none !important;
+  }
+
+  body {
+    background: white;
+    color: black;
+  }
+
+  .section {
+    padding: 40px 0;
+    page-break-inside: avoid;
+  }
+}
+
+/* ── Cursor: Hide custom on touch ──────────────────────────── */
+@media (hover: none) and (pointer: coarse) {
+  .cursor-dot, .cursor-ring {
+    display: none !important;
+  }
+
+  body {
+    cursor: auto !important;
+  }
+}

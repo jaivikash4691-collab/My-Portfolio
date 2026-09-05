@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <!-- ── SEO ── -->
+  <title>Jai Vikash | Full-Stack Developer</title>
+  <meta name="description" content="Jai Vikash — Full-Stack Developer building scalable web applications, intelligent systems and practical software solutions. JavaScript, Node.js, Express, SQL, MongoDB, Java." />
+  <meta name="keywords" content="Jai Vikash, Full-Stack Developer, JavaScript, Node.js, Express, MongoDB, SQL, Java, Portfolio, Software Engineer" />
+  <meta name="author" content="Jai Vikash A R" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- ── Open Graph ── -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:title"       content="Jai Vikash | Full-Stack Developer" />
+  <meta property="og:description" content="Building scalable web applications, intelligent systems, and practical software solutions." />
+  <meta property="og:url"         content="https://jaivikash4691-collab.github.io" />
+  <meta property="og:site_name"   content="Jai Vikash Portfolio" />
+
+  <!-- ── Twitter Card ── -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Jai Vikash | Full-Stack Developer" />
+  <meta name="twitter:description" content="Building scalable web applications, intelligent systems, and practical software solutions." />
+
+  <!-- ── Favicon (SVG inline) ── -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%232563eb'/><text y='72' x='12' font-size='62' font-family='Inter,sans-serif' font-weight='800' fill='white'>JV</text></svg>" />
+
+  <!-- ── CSS ── -->
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="assets/css/animations.css" />
+  <link rel="stylesheet" href="assets/css/sections.css" />
+  <link rel="stylesheet" href="assets/css/responsive.css" />
+
+  <!-- Preconnect to Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+
+<body>
+
+  <!-- ── Scroll Progress Bar ── -->
+  <div id="scroll-progress" role="progressbar" aria-label="Page scroll progress" aria-valuemin="0" aria-valuemax="100"></div>
+
+  <!-- ── Custom Cursor (desktop only) ── -->
+  <div id="cursor-dot"  class="cursor-dot"  aria-hidden="true" style="display:none"></div>
+  <div id="cursor-ring" class="cursor-ring" aria-hidden="true" style="display:none"></div>
+
+  <!-- ── Animated Background ── -->
+  <div class="bg-canvas" aria-hidden="true">
+    <div class="bg-grid"></div>
+    <div class="bg-orb bg-orb-1"></div>
+    <div class="bg-orb bg-orb-2"></div>
+    <canvas id="particles-canvas"></canvas>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       NAVIGATION
+  ══════════════════════════════════════════════════════ -->
+  <header>
+    <nav id="main-nav" class="nav" role="navigation" aria-label="Main navigation">
+      <div class="nav-inner">
+
+        <!-- Logo -->
+        <a href="#hero" class="nav-logo" aria-label="Jai Vikash — Home">
+          <div class="nav-logo-mark" aria-hidden="true">JV</div>
+          <span>Jai Vikash</span>
+        </a>
+
+        <!-- Desktop nav links -->
+        <ul class="nav-links" role="list">
+          <li><a href="#hero"            class="nav-link" data-section="hero"            aria-current="page">Home</a></li>
+          <li><a href="#about"           class="nav-link" data-section="about"           >About</a></li>
+          <li><a href="#skills"          class="nav-link" data-section="skills"          >Skills</a></li>
+          <li><a href="#projects"        class="nav-link" data-section="projects"        >Projects</a></li>
+          <li><a href="#experience"      class="nav-link" data-section="experience"      >Experience</a></li>
+          <li><a href="#achievements"    class="nav-link" data-section="achievements"    >Achievements</a></li>
+          <li><a href="#contact"         class="nav-link" data-section="contact"         >Contact</a></li>
+        </ul>
+
+        <!-- Actions -->
+        <div class="nav-actions">
+          <button
+            id="theme-toggle"
+            class="theme-toggle"
+            aria-label="Switch to light mode"
+            title="Toggle theme"
+          >
+            <span id="theme-icon">🌙</span>
+          </button>
+
+          <!-- Hamburger (mobile) -->
+          <button
+            id="nav-hamburger"
+            class="nav-hamburger"
+            aria-label="Open menu"
+            aria-expanded="false"
+            aria-controls="nav-mobile"
+          >
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+          </button>
+        </div>
+
+      </div>
+    </nav>
+
+    <!-- Mobile menu -->
+    <div id="nav-mobile" class="nav-mobile" role="dialog" aria-label="Mobile navigation" aria-modal="true">
+      <ul role="list">
+        <li><a href="#hero"         class="nav-link" data-section="hero"        >Home</a></li>
+        <li><a href="#about"        class="nav-link" data-section="about"       >About</a></li>
+        <li><a href="#skills"       class="nav-link" data-section="skills"      >Skills</a></li>
+        <li><a href="#projects"     class="nav-link" data-section="projects"    >Projects</a></li>
+        <li><a href="#experience"   class="nav-link" data-section="experience"  >Experience</a></li>
+        <li><a href="#achievements" class="nav-link" data-section="achievements">Achievements</a></li>
+        <li><a href="#contact"      class="nav-link" data-section="contact"     >Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ══════════════════════════════════════════════════════
+         HERO
+    ══════════════════════════════════════════════════════ -->
+    <section id="hero" class="hero section" aria-label="Introduction">
+      <div class="container">
+        <div class="hero-inner">
+
+          <!-- Left: Content -->
+          <div class="hero-content">
+
+            <!-- Availability badge -->
+            <div class="availability-badge" role="status" aria-live="polite">
+              <span class="dot" aria-hidden="true"></span>
+              Available for opportunities
+            </div>
+
+            <!-- Name -->
+            <h1 class="hero-name">
+              <span class="gradient">Jai Vikash</span>
+            </h1>
+
+            <!-- Animated role -->
+            <div class="hero-role-wrapper" aria-label="Role description">
+              <span class="hero-role-prefix" aria-hidden="true">—</span>
+              <span id="hero-role-text" aria-live="polite" aria-atomic="true">Full-Stack Developer</span>
+              <span class="terminal-cursor" aria-hidden="true"></span>
+            </div>
+
+            <!-- Tagline -->
+            <p class="hero-tagline">
+              Building scalable web applications, intelligent systems,
+              and practical software solutions that make a difference.
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="hero-actions">
+              <a href="#projects" class="btn btn-primary">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                View Projects
+              </a>
+              <a href="#" class="btn btn-secondary" aria-label="Download resume (placeholder — replace href with your resume PDF)">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download Resume
+              </a>
+            </div>
+
+            <!-- Social links -->
+            <div class="hero-social">
+              <span class="social-label" aria-hidden="true">Find me on</span>
+              <div class="social-links">
+                <a href="https://github.com/jaivikash4691-collab" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub profile">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                  GitHub
+                </a>
+                <a href="https://www.linkedin.com/in/vikash0715/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn profile">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                  LinkedIn
+                </a>
+                <a href="mailto:jaivikash4691@gmail.com" class="social-link" aria-label="Send email">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                  Email
+                </a>
+              </div>
+            </div>
+
+          </div><!-- /hero-content -->
+
+          <!-- Right: Terminal Visual -->
+          <div class="hero-visual" aria-hidden="true">
+            <div class="terminal-window" role="presentation">
+              <div class="terminal-titlebar">
+                <div class="terminal-dots">
+                  <span class="terminal-dot red"></span>
+                  <span class="terminal-dot yellow"></span>
+                  <span class="terminal-dot green"></span>
+                </div>
+                <span class="terminal-title-text">jv-terminal — bash</span>
+              </div>
+              <div class="terminal-body" id="hero-terminal-body">
+                <!-- Line 1 -->
+                <div class="terminal-line">
+                  <span class="terminal-prompt">$</span>
+                  <span class="terminal-cmd">whoami</span>
+                </div>
+                <div class="terminal-output">
+                  <span class="t-cyan">Jai Vikash</span> · Full-Stack Developer
+                </div>
+                <!-- Line 2 -->
+                <div class="terminal-line">
+                  <span class="terminal-prompt">$</span>
+                  <span class="terminal-cmd">stack</span>
+                </div>
+                <div class="terminal-output">
+                  <span class="t-blue">JavaScript</span> ·
+                  <span class="t-blue">Node.js</span> ·
+                  <span class="t-blue">Express</span> ·
+                  <span class="t-blue">SQL</span> ·
+                  <span class="t-blue">MongoDB</span> ·
+                  <span class="t-blue">Java</span>
+                </div>
+                <!-- Line 3 -->
+                <div class="terminal-line">
+                  <span class="terminal-prompt">$</span>
+                  <span class="terminal-cmd">interests</span>
+                </div>
+                <div class="terminal-output">
+                  <span class="t-yellow">Web Apps</span> ·
+                  <span class="t-yellow">APIs</span> ·
+                  <span class="t-yellow">DSA</span> ·
+                  <span class="t-yellow">AI Integration</span>
+                </div>
+                <!-- Line 4 -->
+                <div class="terminal-line">
+                  <span class="terminal-prompt">$</span>
+                  <span class="terminal-cmd">status</span>
+                </div>
+                <div class="terminal-output">
+                  <span class="t-green">● Building something awesome...</span>
+                </div>
+                <!-- Current line with cursor -->
+                <div class="terminal-line">
+                  <span class="terminal-prompt">$</span>
+                  <span class="terminal-cursor"></span>
+                </div>
+              </div>
+            </div>
+          </div><!-- /hero-visual -->
+
+        </div><!-- /hero-inner -->
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         ABOUT
+    ══════════════════════════════════════════════════════ -->
+    <section id="about" class="section" aria-label="About me">
+      <div class="container">
+
+        <header class="section-header">
+          <div class="section-tag">About</div>
+          <h2 class="section-title">Curious Developer. <span>Problem Solver.</span></h2>
+          <p class="section-subtitle">A bit about who I am, how I think, and what drives me to build.</p>
+        </header>
+
+        <div class="about-grid">
+
+          <!-- Left: Text -->
+          <div class="about-content reveal-left">
+            <p class="about-intro">
+              I'm a passionate full-stack developer who loves turning ideas into real, working software.
+              I enjoy building everything from interactive frontends to robust backends — with a strong
+              focus on clean code, thoughtful design, and solving problems that actually matter.
+            </p>
+            <blockquote class="about-philosophy">
+              "I believe great software is built at the intersection of curiosity and discipline.
+              Every line of code I write is an opportunity to learn something new."
+            </blockquote>
+            <div class="about-tags" role="list" aria-label="Technical interests">
+              <span class="about-tag" role="listitem">⚡ Full-Stack Web Dev</span>
+              <span class="about-tag" role="listitem">🧠 Data Structures & Algorithms</span>
+              <span class="about-tag" role="listitem">🤖 AI Integration</span>
+              <span class="about-tag" role="listitem">🌐 REST API Design</span>
+              <span class="about-tag" role="listitem">☕ Java & OOP</span>
+              <span class="about-tag" role="listitem">🔍 Problem Solving</span>
+            </div>
+          </div>
+
+          <!-- Right: Stats -->
+          <div id="stats-grid" class="stats-grid reveal-right" role="list" aria-label="Key statistics">
+            <!-- Rendered by main.js -->
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         SKILLS
+    ══════════════════════════════════════════════════════ -->
+    <section id="skills" class="section" aria-label="Skills and technologies">
+      <div class="container">
+
+        <header class="section-header">
+          <div class="section-tag">Skills</div>
+          <h2 class="section-title">Technologies I <span>Work With</span></h2>
+          <p class="section-subtitle">Click a skill card to expand and see how I use it. Tabs filter by category.</p>
+        </header>
+
+        <!-- Category Tabs -->
+        <div class="skills-tabs" role="tablist" aria-label="Skill categories">
+          <button class="skill-tab active" data-category="Frontend"    role="tab" aria-selected="true"  aria-controls="skills-content">Frontend</button>
+          <button class="skill-tab"        data-category="Backend"     role="tab" aria-selected="false" aria-controls="skills-content">Backend</button>
+          <button class="skill-tab"        data-category="Database"    role="tab" aria-selected="false" aria-controls="skills-content">Database</button>
+          <button class="skill-tab"        data-category="Programming" role="tab" aria-selected="false" aria-controls="skills-content">Programming</button>
+          <button class="skill-tab"        data-category="Concepts"    role="tab" aria-selected="false" aria-controls="skills-content">Concepts</button>
+          <button class="skill-tab"        data-category="Tools"       role="tab" aria-selected="false" aria-controls="skills-content">Tools</button>
+        </div>
+
+        <!-- Skills Grid (rendered by skills.js) -->
+        <div id="skills-content" role="tabpanel" aria-label="Skills list">
+          <!-- Dynamic content -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         PROJECTS
+    ══════════════════════════════════════════════════════ -->
+    <section id="projects" class="section" aria-label="Projects">
+      <div class="container">
+
+        <header class="section-header">
+          <div class="section-tag">Projects</div>
+          <h2 class="section-title">Things I've <span>Built</span></h2>
+          <p class="section-subtitle">Real projects built to solve real problems. Click any card for full details.</p>
+        </header>
+
+        <!-- Filter Bar -->
+        <div class="project-filters" role="group" aria-label="Filter projects by category">
+          <button class="filter-btn active" data-filter="all"       aria-pressed="true" >All</button>
+          <button class="filter-btn"        data-filter="frontend"  aria-pressed="false">Frontend</button>
+          <button class="filter-btn"        data-filter="fullstack" aria-pressed="false">Full Stack</button>
+          <button class="filter-btn"        data-filter="ai"        aria-pressed="false">AI</button>
+          <button class="filter-btn"        data-filter="api"       aria-pressed="false">API</button>
+        </div>
+
+        <!-- Projects Grid (rendered by projects.js) -->
+        <div id="projects-grid" class="projects-grid" aria-label="Projects list">
+          <!-- Dynamic content -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── Project Detail Modal ── -->
+    <div
+      id="project-modal-overlay"
+      class="modal-overlay"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
+      aria-describedby="modal-overview"
+    >
+      <div id="project-modal" class="modal">
+        <div class="modal-close">
+          <button class="modal-close-btn" aria-label="Close project details">✕</button>
+        </div>
+        <div class="modal-content">
+          <h2 id="modal-title"    class="modal-title"></h2>
+          <div id="modal-subtitle" class="modal-subtitle"></div>
+
+          <div class="modal-section">
+            <div class="modal-section-title">Overview</div>
+            <p id="modal-overview" class="modal-text"></p>
+          </div>
+
+          <div class="modal-section">
+            <div class="modal-section-title">The Problem</div>
+            <p id="modal-problem" class="modal-text"></p>
+          </div>
+
+          <div class="modal-section">
+            <div class="modal-section-title">The Solution</div>
+            <p id="modal-solution" class="modal-text"></p>
+          </div>
+
+          <div class="modal-section">
+            <div class="modal-section-title">Key Features</div>
+            <div id="modal-features" class="modal-features"></div>
+          </div>
+
+          <div class="modal-section">
+            <div class="modal-section-title">Technology Stack</div>
+            <div id="modal-tech" class="modal-tech"></div>
+          </div>
+
+          <div class="modal-section">
+            <div class="modal-section-title">Challenges</div>
+            <p id="modal-challenges" class="modal-text"></p>
+          </div>
+
+          <div class="modal-section">
+            <div class="modal-section-title">What I Learned</div>
+            <p id="modal-learned" class="modal-text"></p>
+          </div>
+
+          <div id="modal-actions" class="modal-actions"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════
+         EXPERIENCE / TIMELINE
+    ══════════════════════════════════════════════════════ -->
+    <section id="experience" class="section" aria-label="Experience and journey">
+      <div class="container">
+
+        <header class="section-header">
+          <div class="section-tag">Journey</div>
+          <h2 class="section-title">My <span>Development Path</span></h2>
+          <p class="section-subtitle">From first code to full-stack projects — the milestones that shaped me.</p>
+        </header>
+
+        <div id="timeline-container" class="timeline" aria-label="Timeline of milestones">
+          <!-- Rendered by timeline.js -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         ACHIEVEMENTS
+    ══════════════════════════════════════════════════════ -->
+    <section id="achievements" class="section" aria-label="Achievements and events">
+      <div class="container">
+
+        <header class="section-header">
+          <div class="section-tag">Achievements</div>
+          <h2 class="section-title">Events &amp; <span>Milestones</span></h2>
+          <p class="section-subtitle">Technical events, hackathons, and personal milestones I'm proud of.</p>
+        </header>
+
+        <div id="achievements-grid" class="achievements-grid" aria-label="Achievements list">
+          <!-- Rendered by main.js -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         DSA / PROBLEM SOLVING
+    ══════════════════════════════════════════════════════ -->
+    <section id="dsa" class="section" aria-label="DSA and problem solving">
+      <div class="container">
+
+        <header class="section-header">
+          <div class="section-tag">Problem Solving</div>
+          <h2 class="section-title">How I <span>Think</span></h2>
+          <p class="section-subtitle">My approach to algorithmic thinking and the topics I've studied.</p>
+        </header>
+
+        <div class="dsa-inner">
+
+          <!-- Left: Thinking flow -->
+          <div class="dsa-thinking reveal-left">
+            <h3 class="dsa-thinking-title">
+              <span aria-hidden="true">🧠</span> Problem-Solving Process
+            </h3>
+            <div class="thinking-flow" role="list" aria-label="Problem solving steps">
+              <div class="thinking-step" role="listitem">
+                <div class="thinking-step-num" aria-hidden="true">01</div>
+                <div class="thinking-step-label">Understand the Problem</div>
+                <div class="thinking-step-desc" aria-hidden="true">Read carefully</div>
+              </div>
+              <div class="thinking-step" role="listitem">
+                <div class="thinking-step-num" aria-hidden="true">02</div>
+                <div class="thinking-step-label">Identify Patterns &amp; Constraints</div>
+                <div class="thinking-step-desc" aria-hidden="true">Edge cases</div>
+              </div>
+              <div class="thinking-step" role="listitem">
+                <div class="thinking-step-num" aria-hidden="true">03</div>
+                <div class="thinking-step-label">Choose the Right Algorithm</div>
+                <div class="thinking-step-desc" aria-hidden="true">Trade-offs</div>
+              </div>
+              <div class="thinking-step" role="listitem">
+                <div class="thinking-step-num" aria-hidden="true">04</div>
+                <div class="thinking-step-label">Analyse Time &amp; Space Complexity</div>
+                <div class="thinking-step-desc" aria-hidden="true">Big-O</div>
+              </div>
+              <div class="thinking-step" role="listitem">
+                <div class="thinking-step-num" aria-hidden="true">05</div>
+                <div class="thinking-step-label">Implement &amp; Test</div>
+                <div class="thinking-step-desc" aria-hidden="true">Verify &amp; refine</div>
+              </div>
+            </div>
+
+            <!-- LeetCode badge -->
+            <div style="margin-top:28px; padding:18px; background:rgba(37,99,235,0.06); border:1px solid rgba(37,99,235,0.18); border-radius:12px; display:flex; align-items:center; gap:14px;">
+              <span style="font-size:2rem;">🧩</span>
+              <div>
+                <div style="font-size:0.78rem; color:var(--text-muted); font-family:var(--font-mono); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:4px;">LeetCode</div>
+                <div style="font-size:1.3rem; font-weight:800; background:var(--grad-blue); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">50+ Problems Solved</div>
+                <div style="font-size:0.8rem; color:var(--text-muted); margin-top:2px;">Arrays · Strings · Trees · DP · Recursion</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: DSA topics grid -->
+          <div class="dsa-topics reveal-right">
+            <h3 class="dsa-topics-title">Topics I've Studied</h3>
+            <div id="dsa-grid" class="dsa-grid" role="list" aria-label="DSA topics">
+              <!-- Rendered by main.js -->
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         INTERACTIVE TERMINAL
+    ══════════════════════════════════════════════════════ -->
+    <section id="terminal-section" class="section" aria-label="Interactive developer terminal">
+      <div class="container">
+
+        <header class="section-header">
+          <div class="section-tag">Terminal</div>
+          <h2 class="section-title">Talk to My <span>Portfolio</span></h2>
+          <p class="section-subtitle">An interactive terminal. Type commands to explore. Try <code class="mono" style="color:var(--accent-cyan)">help</code> to get started.</p>
+        </header>
+
+        <div class="terminal-section-inner">
+          <p class="terminal-section-intro" aria-hidden="true">
+            visitor@jv-portfolio:~$ <span class="terminal-cursor"></span>
+          </p>
+
+          <div class="terminal-interactive" role="region" aria-label="Interactive terminal">
+            <div class="terminal-titlebar">
+              <div class="terminal-dots" aria-hidden="true">
+                <span class="terminal-dot red"></span>
+                <span class="terminal-dot yellow"></span>
+                <span class="terminal-dot green"></span>
+              </div>
+              <span class="terminal-title-text">jv-portfolio — interactive terminal</span>
+            </div>
+
+            <div id="terminal-output" class="terminal-output-area" role="log" aria-live="polite" aria-label="Terminal output" tabindex="0">
+              <!-- Rendered by terminal.js -->
+            </div>
+
+            <div class="terminal-input-row">
+              <span class="terminal-input-prompt" aria-hidden="true">visitor@jv-portfolio:~$</span>
+              <label for="terminal-cmd-input" class="visually-hidden">Terminal input</label>
+              <input
+                id="terminal-cmd-input"
+                type="text"
+                class="terminal-input"
+                placeholder="type a command..."
+                autocomplete="off"
+                autocorrect="off"
+                autocapitalize="off"
+                spellcheck="false"
+                aria-label="Terminal command input"
+              />
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         CONTACT
+    ══════════════════════════════════════════════════════ -->
+    <section id="contact" class="section" aria-label="Contact">
+      <div class="container">
+
+        <header class="section-header">
+          <div class="section-tag">Contact</div>
+          <h2 class="section-title">Let's Build Something <span>Meaningful</span></h2>
+          <p class="section-subtitle">Open to internships, collaborations, and interesting problems to solve.</p>
+        </header>
+
+        <div class="contact-grid">
+
+          <!-- Left: Info + channels -->
+          <div class="contact-info reveal-left">
+            <h3 class="contact-heading">Get in touch</h3>
+            <p class="contact-subtext">
+              Whether you have a project idea, want to collaborate, or just want to say hello —
+              my inbox is always open. I'll do my best to respond promptly.
+            </p>
+
+            <div class="contact-channels" role="list" aria-label="Contact channels">
+              <a href="mailto:jaivikash4691@gmail.com" class="contact-channel" role="listitem" aria-label="Email Jai Vikash">
+                <div class="channel-icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </div>
+                <div class="channel-info">
+                  <div class="channel-label">Email</div>
+                  <div class="channel-value">jaivikash4691@gmail.com</div>
+                </div>
+              </a>
+
+              <a href="https://github.com/jaivikash4691-collab" target="_blank" rel="noopener noreferrer" class="contact-channel" role="listitem" aria-label="GitHub profile">
+                <div class="channel-icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                </div>
+                <div class="channel-info">
+                  <div class="channel-label">GitHub</div>
+                  <div class="channel-value">github.com/jaivikash4691-collab</div>
+                </div>
+              </a>
+
+              <a href="https://www.linkedin.com/in/vikash0715/" target="_blank" rel="noopener noreferrer" class="contact-channel" role="listitem" aria-label="LinkedIn profile">
+                <div class="channel-icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                </div>
+                <div class="channel-info">
+                  <div class="channel-label">LinkedIn</div>
+                  <div class="channel-value">linkedin.com/in/vikash0715</div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right: Contact form -->
+          <div class="contact-form-wrap reveal-right">
+            <h3 class="form-title">Send a Message</h3>
+
+            <form id="contact-form" novalidate aria-label="Contact form">
+              <div class="form-group">
+                <div class="form-field">
+                  <label for="contact-name">Name</label>
+                  <input
+                    type="text"
+                    id="contact-name"
+                    name="name"
+                    placeholder="Your name"
+                    required
+                    autocomplete="name"
+                    maxlength="100"
+                    aria-required="true"
+                  />
+                  <div class="field-error" role="alert" aria-live="polite"></div>
+                </div>
+                <div class="form-field">
+                  <label for="contact-email">Email</label>
+                  <input
+                    type="email"
+                    id="contact-email"
+                    name="email"
+                    placeholder="your@email.com"
+                    required
+                    autocomplete="email"
+                    aria-required="true"
+                  />
+                  <div class="field-error" role="alert" aria-live="polite"></div>
+                </div>
+              </div>
+
+              <div class="form-field">
+                <label for="contact-message">Message</label>
+                <textarea
+                  id="contact-message"
+                  name="message"
+                  rows="6"
+                  placeholder="Tell me about your project or just say hello..."
+                  required
+                  aria-required="true"
+                ></textarea>
+                <div class="char-counter" id="msg-counter" aria-live="polite" aria-atomic="true">0 / 1000</div>
+                <div class="field-error" role="alert" aria-live="polite"></div>
+              </div>
+
+              <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                Send Message
+              </button>
+
+              <div id="form-success-msg" class="form-success-msg" role="status" aria-live="polite">
+                ✅ Message prepared! Your email client will open to send it.
+              </div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════════════ -->
+  <footer role="contentinfo">
+    <div class="container">
+      <div class="footer-inner">
+
+        <div>
+          <div class="footer-brand">Jai Vikash</div>
+          <div class="footer-role">Full-Stack Developer</div>
+        </div>
+
+        <nav class="footer-links" aria-label="Footer navigation">
+          <a href="https://github.com/jaivikash4691-collab" target="_blank" rel="noopener noreferrer" class="footer-link" aria-label="GitHub">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            GitHub
+          </a>
+          <a href="https://www.linkedin.com/in/vikash0715/" target="_blank" rel="noopener noreferrer" class="footer-link" aria-label="LinkedIn">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn
+          </a>
+          <a href="mailto:jaivikash4691@gmail.com" class="footer-link" aria-label="Email">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Email
+          </a>
+        </nav>
+
+        <p class="footer-tagline">Built with curiosity, code and caffeine. ☕</p>
+        <p class="footer-copyright">
+          &copy; <span id="footer-year">2025</span> Jai Vikash. All rights reserved.
+        </p>
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── Back to Top ── -->
+  <button id="back-to-top" aria-label="Back to top" title="Back to top">↑</button>
+
+  <!-- ══════════════════════════════════════════════════════
+       JAVASCRIPT — Load order matters
+  ══════════════════════════════════════════════════════ -->
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/theme.js"></script>
+  <script src="assets/js/cursor.js"></script>
+  <script src="assets/js/animations.js"></script>
+  <script src="assets/js/nav.js"></script>
+  <script src="assets/js/hero.js"></script>
+  <script src="assets/js/skills.js"></script>
+  <script src="assets/js/projects.js"></script>
+  <script src="assets/js/timeline.js"></script>
+  <script src="assets/js/terminal.js"></script>
+  <script src="assets/js/contact.js"></script>
+  <script src="assets/js/easter-eggs.js"></script>
+  <script src="assets/js/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jaivikash4691-collab.github.io/sitemap.xml
