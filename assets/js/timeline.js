@@ -1,5 +1,7 @@
 /**
- * timeline.js — Renders experience timeline from data.js
+ * ============================================================
+ * timeline.js — Renders the Development Journey timeline
+ * ============================================================
  */
 
 const TimelineManager = (() => {
@@ -8,8 +10,8 @@ const TimelineManager = (() => {
   function createItem(entry, index) {
     const item = document.createElement('div');
     item.className = 'timeline-item reveal';
-    item.dataset.type = entry.type;
-    if (index < 6) item.classList.add(`delay-${(index % 5) + 1}`);
+    item.dataset.type = entry.type || 'milestone';
+    if (index < 6) item.classList.add(`delay-${(index % 4) + 1}`);
 
     item.innerHTML = `
       <div class="timeline-node">
@@ -29,6 +31,7 @@ const TimelineManager = (() => {
     const container = document.getElementById('timeline-container');
     if (!container || !TIMELINE) return;
 
+    container.innerHTML = '';
     TIMELINE.forEach((entry, i) => {
       container.appendChild(createItem(entry, i));
     });

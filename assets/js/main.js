@@ -1,15 +1,19 @@
 /**
- * main.js — Application entry point, bootstraps all modules
+ * ============================================================
+ * main.js — Application entry point, renders dynamic sections
+ * and bootstraps all interactive modules
+ * ============================================================
  */
 
 document.addEventListener('DOMContentLoaded', () => {
 
   /* ── Render dynamic sections from data ─────────────────── */
-  renderAboutStats();
-  renderDSASection();
+  renderAboutFocus();
+  renderEducation();
   renderAchievements();
+  renderDSASection();
 
-  /* ── Init all modules ────────────────────────────────────── */
+  /* ── Init all modules ──────────────────────────────────── */
   ThemeManager.init();
   NavManager.init();
   HeroManager.init();
@@ -22,45 +26,73 @@ document.addEventListener('DOMContentLoaded', () => {
   CursorManager.init();
   EasterEggs.init();
 
-  /* ── Update footer year ──────────────────────────────────── */
+  /* ── Update footer year dynamically ────────────────────── */
   const yearEl = document.getElementById('footer-year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 });
 
-/* ── Render About Stats ──────────────────────────────────── */
-function renderAboutStats() {
-  const { STATS } = window.PORTFOLIO_DATA;
-  const grid = document.getElementById('stats-grid');
-  if (!grid || !STATS) return;
+/* ── Render About Focus ("Currently Building") ───────────── */
+function renderAboutFocus() {
+  const { PERSONAL } = window.PORTFOLIO_DATA;
+  const grid = document.getElementById('focus-grid');
+  if (!grid || !PERSONAL?.currentFocus) return;
 
-  STATS.forEach(stat => {
+  grid.innerHTML = '';
+  PERSONAL.currentFocus.forEach((item, i) => {
     const card = document.createElement('div');
-    card.className = 'stat-card reveal-scale';
-
+    card.className = `focus-card reveal-scale delay-${(i % 4) + 1}`;
     card.innerHTML = `
-      <span class="stat-icon" aria-hidden="true">${stat.icon}</span>
-      <div class="stat-value" data-count="${stat.value}" data-suffix="${stat.value >= 50 ? '+' : ''}">
-        ${stat.value}${stat.value >= 50 ? '+' : ''}
+      <div class="focus-icon" aria-hidden="true">${item.icon}</div>
+      <div class="focus-body">
+        <h3 class="focus-title">${item.title}</h3>
+        <p class="focus-desc">${item.desc}</p>
       </div>
-      <div class="stat-label">${stat.label}</div>
     `;
     grid.appendChild(card);
   });
 }
 
-/* ── Render Achievements ─────────────────────────────────── */
+/* ── Render Education Section ────────────────────────────── */
+function renderEducation() {
+  const { EDUCATION } = window.PORTFOLIO_DATA;
+  const grid = document.getElementById('education-grid');
+  if (!grid || !EDUCATION) return;
+
+  grid.innerHTML = '';
+  EDUCATION.forEach((edu, i) => {
+    const card = document.createElement('div');
+    card.className = `education-card reveal delay-${i + 1}`;
+    card.innerHTML = `
+      <div class="edu-header">
+        <span class="edu-icon" aria-hidden="true">${edu.icon}</span>
+        <span class="edu-period">${edu.period}</span>
+      </div>
+      <h3 class="edu-institution">${edu.institution}</h3>
+      <div class="edu-degree">${edu.degree}</div>
+      <div class="edu-location">📍 ${edu.location}</div>
+      <p class="edu-details">${edu.details}</p>
+      <div class="edu-badge">${edu.status}</div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+/* ── Render Verified Activities & Workshops ──────────────── */
 function renderAchievements() {
   const { ACHIEVEMENTS } = window.PORTFOLIO_DATA;
   const grid = document.getElementById('achievements-grid');
   if (!grid || !ACHIEVEMENTS) return;
 
+  grid.innerHTML = '';
   ACHIEVEMENTS.forEach((ach, i) => {
     const card = document.createElement('div');
     card.className = `achievement-card reveal delay-${(i % 4) + 1}`;
 
     card.innerHTML = `
-      <span class="achievement-icon" aria-hidden="true">${ach.icon}</span>
-      <span class="achievement-year">${ach.year}</span>
+      <div class="achievement-card-top">
+        <span class="achievement-icon" aria-hidden="true">${ach.icon}</span>
+        <span class="achievement-year">${ach.year}</span>
+      </div>
       <h3 class="achievement-title">${ach.title}</h3>
       <div class="achievement-subtitle">${ach.subtitle}</div>
       <p class="achievement-desc">${ach.description}</p>
@@ -69,18 +101,19 @@ function renderAchievements() {
   });
 }
 
-/* ── Render DSA Section ──────────────────────────────────── */
+/* ── Render DSA / Problem Solving Topics ─────────────────── */
 function renderDSASection() {
   const { DSA_TOPICS } = window.PORTFOLIO_DATA;
   const grid = document.getElementById('dsa-grid');
   if (!grid || !DSA_TOPICS) return;
 
+  grid.innerHTML = '';
   const categories = [...new Set(DSA_TOPICS.map(t => t.category))];
   const CATEGORY_LABELS = {
-    'linear':     'Linear Structures',
-    'non-linear': 'Non-Linear Structures',
-    'technique':  'Algorithms & Techniques',
-    'concept':    'Core Concepts',
+    'linear':     'Linear Data Structures',
+    'non-linear': 'Non-Linear Data Structures',
+    'technique':  'Algorithmic Techniques',
+    'concept':    'Core CS Paradigms',
   };
 
   categories.forEach(cat => {

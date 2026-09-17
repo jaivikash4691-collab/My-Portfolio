@@ -1,5 +1,7 @@
 /**
- * terminal.js — Interactive terminal section with command execution
+ * ============================================================
+ * terminal.js — Interactive Developer Terminal
+ * ============================================================
  */
 
 const TerminalManager = (() => {
@@ -9,8 +11,8 @@ const TerminalManager = (() => {
   let history = [];
   let historyIndex = -1;
 
-  /* ── Print a line to the terminal output ─────────────────── */
   function print(html, className = 'term-response') {
+    if (!outputEl) return;
     const line = document.createElement('div');
     line.className = `term-line ${className}`;
     line.innerHTML = html;
@@ -19,21 +21,21 @@ const TerminalManager = (() => {
   }
 
   function printPromptLine(cmd) {
+    if (!outputEl) return;
     const line = document.createElement('div');
     line.className = 'term-line';
-    line.innerHTML = `<span class="term-prompt">visitor@jv-portfolio:~$</span> <span class="term-input-text">${escapeHtml(cmd)}</span>`;
+    line.innerHTML = `<span class="term-prompt">visitor@jaivikash-dev:~$</span> <span class="term-input-text">${escapeHtml(cmd)}</span>`;
     outputEl.appendChild(line);
   }
 
   function scrollToBottom() {
-    outputEl.scrollTop = outputEl.scrollHeight;
+    if (outputEl) outputEl.scrollTop = outputEl.scrollHeight;
   }
 
   function escapeHtml(str) {
-    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   }
 
-  /* ── Execute a command ───────────────────────────────────── */
   function execute(raw) {
     const cmd = raw.trim().toLowerCase();
     if (!cmd) return;
@@ -61,13 +63,12 @@ const TerminalManager = (() => {
     if (result) {
       const out = document.createElement('div');
       out.className = 'term-line';
-      out.innerHTML = `<span class="term-response">${result}</span>`;
+      out.innerHTML = `<div class="term-response">${result}</div>`;
       outputEl.appendChild(out);
       scrollToBottom();
     }
   }
 
-  /* ── Handle input ────────────────────────────────────────── */
   function onKeyDown(e) {
     if (e.key === 'Enter') {
       const cmd = inputEl.value;
@@ -78,7 +79,6 @@ const TerminalManager = (() => {
       if (historyIndex < history.length - 1) {
         historyIndex++;
         inputEl.value = history[historyIndex];
-        // Move cursor to end
         setTimeout(() => {
           inputEl.selectionStart = inputEl.selectionEnd = inputEl.value.length;
         }, 0);
@@ -94,34 +94,33 @@ const TerminalManager = (() => {
       }
     } else if (e.key === 'Tab') {
       e.preventDefault();
-      // Simple tab completion
-      const partial = inputEl.value.toLowerCase();
+      const partial = inputEl.value.toLowerCase().trim();
+      if (!partial) return;
       const match = Object.keys(TERMINAL_COMMANDS).find(k => k.startsWith(partial) && k !== partial);
       if (match) inputEl.value = match;
     }
   }
 
   function init() {
-    const section = document.getElementById('terminal-section');
-    if (!section) return;
-
     inputEl  = document.getElementById('terminal-cmd-input');
     outputEl = document.getElementById('terminal-output');
+
     if (!inputEl || !outputEl) return;
 
-    // Welcome message
-    print(`Welcome to <span class="cmd-title">Jai Vikash's</span> developer terminal.`, 'term-response');
-    print(`Type <span class="cmd-name">help</span> to see available commands. Use ↑↓ for history, Tab to autocomplete.`, 'term-response');
-    print('', 'term-response');
+    // Initial banner
+    print(`Welcome to <strong>Jai Vikash's Portfolio Terminal</strong> (v2.0).
+Type <span class="cmd-name">help</span> to view available commands or <span class="cmd-name">projects</span> to inspect flagship builds.`, 'term-response');
 
     inputEl.addEventListener('keydown', onKeyDown);
 
-    // Click anywhere in terminal to focus input
-    const terminalEl = document.querySelector('.terminal-interactive');
-    if (terminalEl) {
-      terminalEl.addEventListener('click', () => inputEl.focus());
+    // Click anywhere on terminal box focuses input
+    const terminalBox = document.querySelector('.terminal-interactive');
+    if (terminalBox) {
+      terminalBox.addEventListener('click', () => {
+        inputEl.focus();
+      });
     }
   }
 
-  return { init };
+  return { init, execute };
 })();

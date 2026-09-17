@@ -1,13 +1,20 @@
 /**
- * hero.js — Typewriter role rotator + hero terminal animation
+ * ============================================================
+ * hero.js — Developer role typewriter & interactive terminal visual
+ * ============================================================
  */
 
 const HeroManager = (() => {
 
   /* ── Role Typewriter ─────────────────────────────────────── */
   function initRoleRotator() {
-    const el    = document.getElementById('hero-role-text');
-    const roles = window.PORTFOLIO_DATA?.PERSONAL?.roles || ['Full-Stack Developer'];
+    const el = document.getElementById('hero-role-text');
+    const roles = window.PORTFOLIO_DATA?.PERSONAL?.roles || [
+      'Full-Stack / MERN Developer',
+      'Computer Science Engineering Student',
+      'Software Developer',
+      'Backend & REST API Builder',
+    ];
     if (!el) return;
 
     let roleIndex  = 0;
@@ -16,8 +23,8 @@ const HeroManager = (() => {
     let isPaused   = false;
     let timerId;
 
-    const TYPING_SPEED  = 80;
-    const DELETE_SPEED  = 45;
+    const TYPING_SPEED  = 75;
+    const DELETE_SPEED  = 40;
     const PAUSE_AFTER   = 2200;
     const PAUSE_BEFORE  = 400;
 
@@ -58,7 +65,7 @@ const HeroManager = (() => {
       return;
     }
 
-    timerId = setTimeout(type, 600);
+    timerId = setTimeout(type, 500);
   }
 
   /* ── Hero Terminal Animation ────────────────────────────── */
@@ -67,27 +74,24 @@ const HeroManager = (() => {
     if (!terminalBody) return;
 
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      // Show all lines immediately
       terminalBody.querySelectorAll('.terminal-output').forEach(o => o.classList.add('visible'));
       return;
     }
 
     const lines = [
-      { type: 'cmd',    text: 'whoami',   delay: 400  },
-      { type: 'output', text: '<span class="t-cyan">Jai Vikash</span> · Full-Stack Developer', delay: 700  },
-      { type: 'cmd',    text: 'stack',    delay: 1400 },
-      { type: 'output', text: '<span class="t-blue">JavaScript</span> · <span class="t-blue">Node.js</span> · <span class="t-blue">Express</span> · <span class="t-blue">SQL</span> · <span class="t-blue">MongoDB</span> · <span class="t-blue">Java</span>', delay: 1700 },
-      { type: 'cmd',    text: 'interests', delay: 2600 },
-      { type: 'output', text: '<span class="t-yellow">Web Apps</span> · <span class="t-yellow">APIs</span> · <span class="t-yellow">DSA</span> · <span class="t-yellow">AI Integration</span>', delay: 2900 },
-      { type: 'cmd',    text: 'status',   delay: 3800 },
-      { type: 'output', text: '<span class="t-green">● Building something awesome...</span>', delay: 4100 },
+      { type: 'cmd',    text: 'whoami', delay: 300 },
+      { type: 'output', text: '<span class="t-cyan">Jai Vikash A R</span> · Computer Science Engineering Student & Full-Stack Developer', delay: 600 },
+      { type: 'cmd',    text: 'stack', delay: 1300 },
+      { type: 'output', text: '<span class="t-blue">React.js</span> · <span class="t-blue">Node.js</span> · <span class="t-blue">Express.js</span> · <span class="t-blue">MongoDB</span> · <span class="t-blue">Java</span> · <span class="t-blue">SQL</span>', delay: 1600 },
+      { type: 'cmd',    text: 'flagships', delay: 2400 },
+      { type: 'output', text: '<span class="t-yellow">Pathly</span> (Career & AI Platform) · <span class="t-yellow">DevTrack</span> (Task & Team System) · <span class="t-yellow">FixNear</span> (Service Finder)', delay: 2700 },
+      { type: 'cmd',    text: 'status', delay: 3600 },
+      { type: 'output', text: '<span class="t-green">● Open for Software Developer Internships & Entry-Level Roles</span>', delay: 3900 },
     ];
 
-    // Pre-generate DOM for cmd lines with cursor
-    const allCmdEls   = terminalBody.querySelectorAll('.terminal-line');
+    const allCmdEls    = terminalBody.querySelectorAll('.terminal-line');
     const allOutputEls = terminalBody.querySelectorAll('.terminal-output');
 
-    // Hide everything initially
     allCmdEls.forEach(el => { el.style.opacity = '0'; });
     allOutputEls.forEach(el => { el.classList.remove('visible'); });
 

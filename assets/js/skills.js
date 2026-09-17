@@ -1,30 +1,39 @@
 /**
- * skills.js — Renders skill cards dynamically from data.js, tab filtering
+ * ============================================================
+ * skills.js — Renders categorized technical skill cards with
+ * interactive usage explanations (Zero Fake Percentages)
+ * ============================================================
  */
 
 const SkillsManager = (() => {
   const { SKILLS } = window.PORTFOLIO_DATA;
 
-  function createSkillCard(skill) {
+  function createSkillCard(skill, index) {
     const card = document.createElement('div');
     card.className = 'skill-card reveal';
     card.setAttribute('tabindex', '0');
     card.setAttribute('role', 'button');
-    card.setAttribute('aria-label', `${skill.name}: ${skill.description}`);
+    card.setAttribute('aria-expanded', 'false');
+    card.setAttribute('aria-label', `${skill.name}: ${skill.description}. Click to toggle explanation.`);
 
     card.innerHTML = `
-      <span class="skill-icon" aria-hidden="true">${skill.icon}</span>
-      <div class="skill-name">${skill.name}</div>
-      <div class="skill-bar" role="progressbar" aria-valuenow="${skill.level}" aria-valuemin="0" aria-valuemax="100" aria-label="${skill.name} proficiency">
-        <div class="skill-bar-fill" data-width="${skill.level}%"></div>
+      <div class="skill-card-top">
+        <span class="skill-icon" aria-hidden="true">${skill.icon}</span>
+        <span class="skill-indicator" aria-hidden="true">ℹ</span>
       </div>
+      <div class="skill-name">${skill.name}</div>
       <p class="skill-desc">${skill.description}</p>
+      <div class="skill-card-hint">Tap to learn more</div>
     `;
 
-    // Expand on click (toggle) or keyboard Enter/Space
+    // Toggle expanded state on click or keydown (Enter / Space)
     function toggle() {
       const isExpanded = card.classList.toggle('expanded');
       card.setAttribute('aria-expanded', String(isExpanded));
+      const hint = card.querySelector('.skill-card-hint');
+      if (hint) {
+        hint.textContent = isExpanded ? 'Tap to collapse' : 'Tap to learn more';
+      }
     }
 
     card.addEventListener('click', toggle);
@@ -40,37 +49,45 @@ const SkillsManager = (() => {
 
   function renderCategory(categoryName) {
     const container = document.getElementById('skills-content');
-    if (!container) return;
+    if (!container || !SKILLS) return;
 
     container.innerHTML = '';
 
-    const skillsInCategory = SKILLS[categoryName];
-    if (!skillsInCategory) return;
+    let skillsToRender = [];
+    if (categoryName === 'All') {
+      // Aggregate all skills
+      Object.keys(SKILLS).forEach(cat => {
+        skillsToRender = skillsToRender.concat(SKILLS[cat]);
+      });
+    } else {
+      skillsToRender = SKILLS[categoryName] || [];
+    }
+
+    if (!skillsToRender.length) return;
 
     const grid = document.createElement('div');
     grid.className = 'skills-grid skill-category-panel active';
 
-    skillsInCategory.forEach((skill, i) => {
-      const card = createSkillCard(skill);
-      // Stagger delay
-      if (i < 6) card.classList.add(`delay-${i + 1}`);
+    skillsToRender.forEach((skill, i) => {
+      const card = createSkillCard(skill, i);
+      if (i < 8) card.classList.add(`delay-${(i % 4) + 1}`);
       grid.appendChild(card);
     });
 
     container.appendChild(grid);
 
-    // Trigger reveal + skill bars
+    // Trigger reveal animation
     requestAnimationFrame(() => {
-      AnimationManager.initSkillBars();
-      // Manually trigger reveal for freshly rendered cards
-      grid.querySelectorAll('.reveal').forEach(el => {
-        setTimeout(() => el.classList.add('revealed'), 50);
+      grid.querySelectorAll('.reveal').forEach((el, idx) => {
+        setTimeout(() => el.classList.add('revealed'), 30 * idx);
       });
     });
   }
 
   function initTabs() {
     const tabs = document.querySelectorAll('.skill-tab');
+    if (!tabs.length) return;
+
     tabs.forEach(tab => {
       tab.addEventListener('click', () => {
         tabs.forEach(t => {
@@ -85,11 +102,31 @@ const SkillsManager = (() => {
   }
 
   function init() {
+    const tabsContainer = document.querySelector('.skills-tabs');
+    if (tabsContainer && SKILLS) {
+      // Build tabs dynamically from SKILLS keys
+      const categories = ['Programming', 'Frontend', 'Backend', 'Databases', 'Tools', 'Computer Science', 'AI & APIs', 'Additional'];
+      tabsContainer.innerHTML = '';
+      
+      categories.forEach((cat, idx) => {
+        if (SKILLS[cat]) {
+          const btn = document.createElement('button');
+          btn.className = `skill-tab ${idx === 0 ? 'active' : ''}`;
+          btn.dataset.category = cat;
+          btn.setAttribute('role', 'tab');
+          btn.setAttribute('aria-selected', idx === 0 ? 'true' : 'false');
+          btn.setAttribute('aria-controls', 'skills-content');
+          btn.textContent = cat;
+          tabsContainer.appendChild(btn);
+        }
+      });
+    }
+
     // Render first category by default
-    const firstCategory = Object.keys(SKILLS)[0];
+    const firstCategory = Object.keys(SKILLS)[0] || 'Programming';
     renderCategory(firstCategory);
     initTabs();
   }
 
-  return { init };
+  return { init, renderCategory };
 })();

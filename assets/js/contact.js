@@ -1,5 +1,8 @@
 /**
- * contact.js — Contact form validation and submission (mailto fallback)
+ * ============================================================
+ * contact.js — Contact form validation, character counter,
+ * and reliable mailto client launcher
+ * ============================================================
  */
 
 const ContactManager = (() => {
@@ -23,17 +26,23 @@ const ContactManager = (() => {
     const field = document.getElementById(fieldId)?.closest('.form-field');
     if (!field) return;
     field.classList.remove('error');
+    const errEl = field.querySelector('.field-error');
+    if (errEl) errEl.textContent = '';
   }
 
   function clearAllErrors(form) {
-    form.querySelectorAll('.form-field').forEach(f => f.classList.remove('error'));
+    form.querySelectorAll('.form-field').forEach(f => {
+      f.classList.remove('error');
+      const errEl = f.querySelector('.field-error');
+      if (errEl) errEl.textContent = '';
+    });
   }
 
   function validate(data) {
     let valid = true;
 
     if (!data.name.trim() || data.name.trim().length < 2) {
-      setError('contact-name', 'Please enter your name (at least 2 characters).');
+      setError('contact-name', 'Please enter your name (minimum 2 characters).');
       valid = false;
     } else {
       clearError('contact-name');
@@ -76,23 +85,18 @@ const ContactManager = (() => {
       const el = getEl(id);
       if (!el) return;
       el.addEventListener('blur', () => {
-        const data = {
-          name:    getEl('contact-name')?.value  || '',
-          email:   getEl('contact-email')?.value || '',
-          message: getEl('contact-message')?.value || '',
-        };
-        // Only validate the blurred field
+        const val = el.value.trim();
         if (id === 'contact-name') {
-          if (data.name.trim().length >= 2) clearError(id);
-          else setError(id, 'Please enter your name (at least 2 characters).');
+          if (val.length >= 2) clearError(id);
+          else if (val.length > 0) setError(id, 'Name must be at least 2 characters.');
         }
         if (id === 'contact-email') {
-          if (validateEmail(data.email)) clearError(id);
-          else setError(id, 'Please enter a valid email address.');
+          if (validateEmail(val)) clearError(id);
+          else if (val.length > 0) setError(id, 'Please enter a valid email address.');
         }
         if (id === 'contact-message') {
-          if (data.message.trim().length >= 10) clearError(id);
-          else setError(id, 'Message must be at least 10 characters.');
+          if (val.length >= 10) clearError(id);
+          else if (val.length > 0) setError(id, 'Message must be at least 10 characters.');
         }
       });
     });
@@ -113,31 +117,46 @@ const ContactManager = (() => {
     if (!validate(data)) return;
 
     const submitBtn = form.querySelector('button[type="submit"]');
-    if (submitBtn) submitBtn.classList.add('btn-loading');
+    const originalBtnHTML = submitBtn ? submitBtn.innerHTML : '';
+    if (submitBtn) {
+      submitBtn.classList.add('btn-loading');
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `
+        <svg class="spinner" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10" stroke-opacity="0.25"></circle>
+          <path d="M12 2a10 10 0 0 1 10 10" stroke-linecap="round"></path>
+        </svg>
+        <span>Preparing Email...</span>
+      `;
+    }
 
-    // Simulate brief loading then open mailto
+    // Brief simulation for UX, then launch mailto
     setTimeout(() => {
-      if (submitBtn) submitBtn.classList.remove('btn-loading');
+      if (submitBtn) {
+        submitBtn.classList.remove('btn-loading');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnHTML;
+      }
 
-      // Build mailto link as fallback
-      const subject   = encodeURIComponent(`Portfolio Contact from ${data.name}`);
+      const subject   = encodeURIComponent(`Portfolio Inquiry from ${data.name}`);
       const body      = encodeURIComponent(
-        `Name: ${data.name}\nEmail: ${data.email}\n\nMessage:\n${data.message}`
+        `Hi Jai Vikash,\n\n${data.message}\n\nFrom:\nName: ${data.name}\nEmail: ${data.email}`
       );
       const mailtoUrl = `mailto:${PERSONAL.email}?subject=${subject}&body=${body}`;
 
-      // Show success
       const successMsg = getEl('form-success-msg');
       if (successMsg) {
         successMsg.classList.add('show');
-        setTimeout(() => successMsg.classList.remove('show'), 5000);
+        setTimeout(() => successMsg.classList.remove('show'), 6000);
       }
 
       form.reset();
+      const counter = getEl('msg-counter');
+      if (counter) counter.textContent = '0 / 1000';
 
       // Open mail client
       window.location.href = mailtoUrl;
-    }, 800);
+    }, 700);
   }
 
   function init() {
